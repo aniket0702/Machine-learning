@@ -48,3 +48,18 @@ def preprocess(s, lowercase=False):
  
 tweet = 'RT @marcobonzanini: just an example! :D http://example.com #NLP'
 print(preprocess(tweet))
+
+import operator
+from collections import Counter
+
+with open('python.json', 'r') as f:
+    count_all = Counter() 
+    for line in f:
+        tweet = json.loads(line)
+        terms_all  =[ term for term in preprocess(tweet['text'])]
+        count_all.update(terms_all)
+
+    print count_all.most_common(5)
+    
+
+
